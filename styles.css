@@ -9,28 +9,54 @@ h1 {
     margin: 20px;
 }
 
-main {
-    display: flex;
+.sidebar {
+    height: 550;
+    width: 100%;
     margin: 0;
     padding: 0;
+    display: flex;
+    justify-content: center;
+    gap: 100px;
+
 }
 
-.sidebar {
-    height: 500px;
-    width: 350px;
-    border: thick solid black;
-    margin: 0;
-    padding: 0;
+.color, .backgroundColor {
+    appearance: none;
+    outline: none;
+    background-color: #0f6b6572;
+    margin: auto;
+}
+
+.colorSelector {
+    display: flex;
+    justify-content: center;
+    margin-top: 30px;
+    margin-bottom: 30px;
+    width: 400px;
+}
+
+.cont {
+    display: flex;
+    flex-direction: column;
+    width: 200px;
+}
+
+p {
+    text-align: center;
+    font-size: 24px;
+}
+
+.slideContainer {
+    align-self: center;
 }
 
 .gridSize {
     font-size: 25px;
-}
-
-.slidecontainer {
-    width: 75%; 
+    text-align: center;
     margin: auto;
-  }
+    margin-top: 20px;
+    width: 400px;
+}
   
 .slider {
     -webkit-appearance: none;  
@@ -57,6 +83,29 @@ main {
     cursor: pointer; 
 }
 
+button {
+    appearance: none;
+    outline: none;
+    background-color: #0f6b6572;
+    margin: auto;
+    border: transparent;
+    font-size: 20px;
+    font-family: "VT323";
+    padding-left: 13px;
+    padding-right: 13px;
+    padding-top: 4px;
+    padding-bottom: 4px;
+
+}
+
+.buttons {
+    display: flex;
+    justify-content: center;
+    margin-top: 30px;
+    margin-bottom: 30px;
+    width: 400px;
+}
+
 .container {
     display: flex;
     flex-direction: column;
@@ -80,9 +129,17 @@ main {
     padding: 0;
 }
 
+.hovered {
+    background-color: black;
+}
+
 .line {
     display: flex;
     height: 100%;
     width: 100%;
     
+}
+
+.bigButton {
+    transform: scale(1.2);
 }

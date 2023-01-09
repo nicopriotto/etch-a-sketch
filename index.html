@@ -12,14 +12,34 @@
 </head>
 <body>
     <h1>ETCH-A-SKETCH</h1>
-    <main>
-        <div class="sidebar">
-            <div class="slidecontainer">
-                <p class="gridSize">Select Grid Size: 16x16</p>
-                <input type="range" min="16" max="64" value="16" class="slider">
-              </div>
-        </div>
         <div class="container"></div>
-    </main>
+        <div class="sidebar">
+                <div class="colorSelector">
+                    <div class="cont">
+                        <input type="color" class="color">
+                        <p>Pen Color</p>
+                    </div>
+                    <div class="cont">
+                        <input type="color" class="backgroundColor">
+                        <p>Background Color</p>
+                    </div>
+                </div>
+                
+                <div class="slideContainer">
+                    <input type="range" min="16" max="64" value="16" class="slider">
+                    <p class="gridSize">Grid Size: 16x16</p>
+                </div>
+
+                <div class="colorSelector">
+                    <div class="cont">
+                        <button class="erase">Erase</button>
+                        <p>Color=Background</p>
+                    </div>
+                    <div class="cont">
+                        <button class="clear">Clear</button>
+                        <p>Start Over</p>
+                    </div>
+                </div>
+              </div>
 </body>
 </html>
