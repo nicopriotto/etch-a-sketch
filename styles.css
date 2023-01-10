@@ -1,5 +1,7 @@
 body {
-    background-image: url(./img/back.png);
+    background-image: url(./img/abstract-background-small-squares-pixels-light-blue-colors_444390-15932.webp);
+    background-repeat: no-repeat;
+    background-size: cover;
     font-family: "VT323";
 }
 
@@ -129,10 +131,6 @@ button {
     padding: 0;
 }
 
-.hovered {
-    background-color: black;
-}
-
 .line {
     display: flex;
     height: 100%;
@@ -142,4 +140,12 @@ button {
 
 .bigButton {
     transform: scale(1.2);
+}
+
+.rainbow, .pastel {
+    width: 200px;
+    height: 40px;
+    border: solid black;
+    margin-bottom: 30px;
+
 }

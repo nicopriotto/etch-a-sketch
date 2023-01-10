@@ -1,3 +1,14 @@
+const container = document.querySelector(".container");
+const colorPen = document.querySelector(".color");
+const colorBackground = document.querySelector(".backgroundColor");
+const slider = document.querySelector(".slider");
+const girdSize = document.querySelector(".gridSize")
+const erase = document.querySelector(".erase");
+const clear = document.querySelector(".clear");
+const rainbow = document.querySelector(".rainbow");
+const pastel = document.querySelector(".pastel")
+
+// GRID //
 // Function that creates the boxes within a line
 function createLine(num, line) {
     for (let i = 0; i < num; i++) {
@@ -24,9 +35,22 @@ function clearGrid(num) {
     }
 }
 
-const container = document.querySelector(".container");
+// Slider to define grid size
+createGrid(slider.value);
+slider.oninput = function() {
+    clearGrid(slider.value);
+    girdSize.textContent = "Grid Size: " + this.value + " x " + this.value;
+    createGrid(this.value);
+    hoverColor(colorPen.value);
+    backgroundColorSet();
+}
 
-// Changing Colors while hovering
+// PEN COLORS //
+
+// For when you start the page 
+hoverColor(colorPen.value);
+
+// Function that changes Colors while hovering
 function hoverColor(color) {
     var box = document.querySelectorAll(".square");
     box.forEach ((box) => {
@@ -37,38 +61,66 @@ function hoverColor(color) {
 }
 
 // Changes color to the one selected
-const colorPen = document.querySelector(".color");
-    colorPen.addEventListener('input', () => {
+colorPen.addEventListener('input', () => {
     hoverColor(colorPen.value);
 });
 
-// Changes background-color to the one selected
-const colorBackground = document.querySelector(".backgroundColor");
-colorBackground.addEventListener('input', () => {
-    const box = document.querySelectorAll('.square');
-    box.forEach((box) => {
-      box.style.backgroundColor = colorBackground.value;
-    });
-});
-
-// Slider to define grid size
-const slider = document.querySelector(".slider");
-createGrid(slider.value);
-const girdSize = document.querySelector(".gridSize")
-slider.oninput = function() {
-    clearGrid(slider.value);
-    girdSize.textContent = "Grid Size: " + this.value + " x " + this.value;
-    createGrid(this.value);
-    hoverColor(colorPen.value);
+// Rainbow Button
+function toggleRainbow(e) {  // Generates random color
+    var p1 = Math.floor(Math.random()*255);
+    var p2 = Math.floor(Math.random()*255);
+    var p3 = Math.floor(Math.random()*255);
+    var finalColor = `rgb(${p1},${p2},${p3})`
+    e.target.style.backgroundColor  = finalColor;
 }
+rainbowCounter = 0
+rainbow.addEventListener('click', () => {
+    rainbowCounter++;
+    if (rainbowCounter % 2 == 1) {
+        rainbow.classList.add("bigButton");
+        const box = document.querySelectorAll(".square");
+        box.forEach((box) => {
+            box.addEventListener('mouseover', toggleRainbow);   
+        })
+    } else {
+        const box = document.querySelectorAll(".square");
+        box.forEach((box) => {
+            box.removeEventListener('mouseover', toggleRainbow);   
+          })
+        hoverColor(colorPen.value);
+        rainbow.classList.remove("bigButton");
+    }
+})
 
-// For when you start the page 
-hoverColor(colorPen.value);
-
-// Erase & Clear buttons
-const erase = document.querySelector(".erase");
-const clear = document.querySelector(".clear");
-
+// Pastel Button
+function togglePastel(e) {  // Generates random color
+    var p1= Math.floor(Math.random() * 128) + 128;
+    var p2= Math.floor(Math.random() * 128) + 128;
+    var p3= Math.floor(Math.random() * 128) + 128;
+    var finalColor = `rgb(${p1},${p2},${p3})`
+    e.target.style.backgroundColor  = finalColor;
+}
+pastelCounter = 0
+pastel.addEventListener('click', () => {
+    pastelCounter++;
+    if (pastelCounter % 2 == 1) {
+        pastel.classList.add("bigButton");
+        const box = document.querySelectorAll(".square");
+        box.forEach((box) => {
+            box.addEventListener('mouseover', togglePastel);   
+        })
+    } else {
+        const box = document.querySelectorAll(".square");
+        box.forEach((box) => {
+            box.removeEventListener('mouseover', togglePastel);   
+          })
+        hoverColor(colorPen.value);
+        pastel.classList.remove("bigButton");
+    }
+})
+    
+  
+// Erase Button
 erase.addEventListener('click', () => {
     if (colorBackground.value != "#000000") {
         hoverColor(colorBackground.value);
@@ -81,17 +133,27 @@ erase.addEventListener('click', () => {
     }, 300);
 })
 
+// BACKGROUND //
+
+// Changes background-color to the one selected
+function backgroundColorSet() {
+    const box = document.querySelectorAll('.square');
+    box.forEach((box) => {
+        box.style.backgroundColor = colorBackground.value;
+    });
+}
+
+colorBackground.addEventListener('input', () => {
+    backgroundColorSet();
+});
+
+// Clear Button
 clear.addEventListener('click', () => {
     if (colorBackground.value != "#000000") {
-        const box = document.querySelectorAll('.square');
-        box.forEach((box) => {
-        box.style.backgroundColor = colorBackground.value;
-    }); 
+        backgroundColorSet(); 
     } else {
         const box = document.querySelectorAll('.square');
-        box.forEach((box) => {
-        box.style.backgroundColor = "white";
-        });
+        backgroundColorSet();
     }
     clear.classList.add("bigButton");
     setTimeout( () => {
